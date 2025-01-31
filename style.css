@@ -1,0 +1,79 @@
+body {
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    gap: 30px;
+}
+.icon {
+    font-size: 60px;
+    text-decoration: none;
+    position: relative;
+    transition: 0.6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon i {
+    color: white;
+    transition: 0.3s;
+}
+/* التأثير على الأيقونة فقط وليس على الانعكاس */
+.icon:hover i:not(.reflection) {
+    text-shadow: 0 0 20px currentColor;
+}
+/* تأثير الانعكاس */
+.icon::before {
+    content: attr(data-icon);
+    font-family: "Font Awesome 6 Brands";
+    position: absolute;
+    top: 140%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: inherit;
+    opacity: 0.6;
+    transform: scaleY(-1);
+    filter: blur(5px);
+}
+/* تأثير الدائرة عند تمرير الماوس */
+.icon::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border-radius: 50%;
+    z-index: -1;
+    transition: 0.6s;
+    transform: scale(0);
+}
+.icon:hover::after {
+    transform: scale(1);
+    box-shadow: 0 0 40px currentColor;
+}
+/* تصميم الانعكاس */
+.icon .reflection {
+    position: absolute;
+    top: 140%;
+    opacity: 0.6;
+    transform: scaleY(-1);
+    filter: blur(5px);
+}
+/* منع تغيير لون انعكاس تيك توك */
+.icon.tiktok .reflection {
+    color: #ff0050 !important;
+    text-shadow: none !important;
+}
+/* تخصيص الألوان */
+.linkedin i, .linkedin::before, .linkedin::after { color: #0077b5; }
+.instagram i, .instagram::before, .instagram::after { color: #e1306c; }
+.tiktok i, .tiktok::before, .tiktok::after { color: #ff0050; }
+.facebook i, .facebook::before, .facebook::after { color: #1877f2; }
